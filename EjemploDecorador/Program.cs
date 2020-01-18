@@ -12,10 +12,23 @@ namespace EjemploDecorador
         {
             IGuardadorCxP guardadorCxP = new GuardadorCxP();
 
-            IDecoradorGuardadorCxP guardarCxPConGuardadorHistorial = new DecoradorGuardadorCxPGuardadorHistorial(guardadorCxP);
-            IDecoradorGuardadorCxP guardarCxPConEnviadorEmail = new DecoradorGuardadorCxPEnviadorEmail(guardarCxPConGuardadorHistorial);
+            IDecoradorGuardadorCxP guardarCxPConGuardadorHistorial;
+            IDecoradorGuardadorCxP guardarCxPConEnviadorEmail;
 
-            Console.WriteLine($"{guardarCxPConEnviadorEmail.GuardarCxP()}");
+
+            Console.WriteLine("Modalidad 1: ");
+            guardarCxPConGuardadorHistorial = new DecoradorGuardadorCxPGuardadorHistorial(guardadorCxP);
+            Console.WriteLine($"{guardarCxPConGuardadorHistorial.GuardarCxP()}\n");
+
+
+            Console.WriteLine("Modalidad 2: ");
+            guardarCxPConEnviadorEmail = new DecoradorGuardadorCxPEnviadorEmail(guardadorCxP);
+            Console.WriteLine($"{guardarCxPConEnviadorEmail.GuardarCxP()}\n");
+
+            Console.WriteLine("Modalidad 3:");
+            guardarCxPConGuardadorHistorial = new DecoradorGuardadorCxPGuardadorHistorial(guardadorCxP);
+            guardarCxPConEnviadorEmail = new DecoradorGuardadorCxPEnviadorEmail(guardarCxPConGuardadorHistorial);
+            Console.WriteLine($"{guardarCxPConEnviadorEmail.GuardarCxP()}\n");
             Console.ReadKey();
         }
     }
